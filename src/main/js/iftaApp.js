@@ -22,6 +22,15 @@ iftaApp.controller('iftaCtrl', function ($scope) {
     datePicker();
 
     function helpWindow() {
-        window.open("http://www.w3schools.com");
+        var popupWindow = window.open('../UI/iftaFiling.html');
     }
 });
+
+
+/*
+angular.module('originalModule').service('popupService', function(someOtherDataService) {
+
+    var popupWindow = window.open('popupWindow.html');
+    popupWindow.mySharedData = someOtherDataService.importantData;
+
+});*/

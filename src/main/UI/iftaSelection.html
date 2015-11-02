@@ -32,14 +32,7 @@
             <span class="toolbar_menu_label">{{date | date:'fullDate'}}</span>
         </div>
         <div id="topbarRight" class="col-sm-1" style="border-left: 1px solid white;">
-            <a onclick="window.open(this.href,'targetWindow',
-                                   'toolbar=no,
-                                    location=no,
-                                    status=no,
-                                    menubar=no,
-                                    scrollbars=yes,
-                                    resizable=yes');
- return false;">Help</a>
+            <a ng-click="helpWindow()">Help</a>
         </div>
     </div>
 
