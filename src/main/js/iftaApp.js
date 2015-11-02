@@ -12,9 +12,9 @@ iftaApp.controller('iftaCtrl', function ($scope) {
     today();
 
     function datePicker() {
-        $( "#datepicker" ).datepicker({
+        $("#datepicker").datepicker({
             showOn: "button",
-            buttonImage: "images/calendar.gif",
+            buttonImage: "../images/iconCalendar.png",
             buttonImageOnly: true,
             buttonText: "Select date"
         });

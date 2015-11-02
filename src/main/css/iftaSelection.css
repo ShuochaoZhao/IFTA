@@ -150,12 +150,13 @@ a:hover {
     background-color: #FFF9E8;
 }
 
-.footer {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
+footer {
+    position: absolute !important;
+    bottom: -40px;
+    left: 0px;
+
     width: 100%;
-    vertical-align: bottom;
+   /* vertical-align: bottom;*/
     height: 40px;
     line-height: 40px;
     background-color: #383838;
@@ -172,7 +173,8 @@ a:hover {
 }
 
 body, html {
-    height:100%;
+    position: relative;
+    min-height: 800px;
 }
 
 hr {
@@ -207,4 +209,14 @@ table, th, td {
 .input-right {
     text-align: right;
     width: 150px;
+}
+
+.input-left {
+    text-align: right;
+    width: 150px;
+}
+
+#datepicker {
+    display: inline;
+    margin-right: 10px;
 }

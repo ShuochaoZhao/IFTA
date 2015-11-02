@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <title>IFTA Selection</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="..\resources\css\iftaSelection.css">
+    <link rel="stylesheet" href="..\css\iftaSelection.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="..\resources\js\iftaApp.js"></script>
+    <script src="..\js\iftaApp.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>
 <body ng-controller="iftaCtrl">
     <!--Header-->
     <div id="iftaHeader">
-        <div id="iftaHeaderLeft" class="col-sm-1">
-            <img alt="Ohio.gov">
+        <div id="iftaHeaderLeft">
+            <img src="..\images\ohiogov.png" alt="Ohio.gov">
         </div>
-        <div id="iftaHeaderRight" class="col-sm-11">
-            <img alt="Ohio">
+        <div id="iftaHeaderRight">
+            <img src="..\images\ohio.gif" alt="Ohio">
         </div>
     </div>
 
@@ -29,7 +32,14 @@
             <span class="toolbar_menu_label">{{date | date:'fullDate'}}</span>
         </div>
         <div id="topbarRight" class="col-sm-1" style="border-left: 1px solid white;">
-            <a ng-click="helpWindow()">Help</a>
+            <a onclick="window.open(this.href,'targetWindow',
+                                   'toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes');
+ return false;">Help</a>
         </div>
     </div>
 
@@ -105,7 +115,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-4">
-                        <button type="Cancel" class="btn btn-default">Submit</button>
+                        <button type="Cancel" class="btn btn-default" style="margin-right:20px;">cancelt</button>
                         <button type="Next" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
@@ -122,11 +132,10 @@
     </div>
 
     <!--Footer-->
-    <div class="col-sm-12 footer">
+    <footer class="col-sm-12">
         <div id="footer">
             <a>Contact us</a>
         </div>
-    </div>
-
+    </footer>
 </body>
 </html>
