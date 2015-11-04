@@ -2,7 +2,68 @@
  * Created by szhao on 10/29/2015.
  */
 
-var iftaApp = angular.module('iftaApp', []);
+var iftaApp = angular.module('iftaApp', ['ngRoute']);
+
+iftaApp.config(function($routeProvider) {
+    $routeProvider.
+        when('/', {
+            templateUrl: 'Home.html',
+            controller: 'iftaCtrl'
+        }).
+        when('/route1', {
+            templateUrl: 'iftaSelection.html',
+            controller: 'iftaCtrl'
+        }).
+        when('/route2', {
+            templateUrl: 'iftaFiling.html',
+            controller: 'iftaCtrl'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
+});
+
+iftaApp.factory('NextBackService', function($route, $location){
+    //array for keeping defined routes
+    var routes = [];
+
+    angular.forEach($route.toutes, function(config, route) {
+        //not to add same route twice
+        if (angular.isUndefined(config.redirectTo)) {
+            routes.push(route);
+        }
+    });
+
+    return {
+        goNext: function() {
+            var nextIndex = routes.indexOf($location.path())+1;
+            if (nextIndex === routes.length) {
+                $location.path(routes[0]);
+            } else {
+                location.path(routes[nextIndex]);
+            }
+        },
+        goBack: function() {
+            var backIndex = routes.indexOf($location.path())-1;
+            if (backIndex === -1) {
+                $location.path(routes[routes.length-1]);
+            } else {
+                $location.path(routes[backIndex]);
+            }
+        }
+    };
+
+});
+
+iftaApp.run(function($rootScope, NextBackService) {
+    $rootScope.goNext = function() {
+        NextBackService.goNext();
+    };
+
+    $rootScope.goBack = function() {
+        NextBackBasicService.goBack();
+    };
+});
 
 iftaApp.controller('iftaCtrl', function ($scope) {
 
@@ -21,16 +82,9 @@ iftaApp.controller('iftaCtrl', function ($scope) {
     }
     datePicker();
 
-    function helpWindow() {
-        var popupWindow = window.open('../UI/iftaFiling.html');
+    $scope.popupWindow = function(URL) {
+        window.open(URL, "hahaha", "width=300, height=300");
     }
+
 });
 
-
-/*
-angular.module('originalModule').service('popupService', function(someOtherDataService) {
-
-    var popupWindow = window.open('popupWindow.html');
-    popupWindow.mySharedData = someOtherDataService.importantData;
-
-});*/

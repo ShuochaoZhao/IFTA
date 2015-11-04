@@ -6,15 +6,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="..\css\iftaSelection.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
     <script src="..\js\iftaApp.js"></script>
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>
-<body ng-controller="iftaCtrl">
+<body>
     <!--Header-->
-    <div id="iftaHeader">
+    <div id="iftaHeader" ng-controller="iftaCtrl">
         <div id="iftaHeaderLeft">
             <img src="..\images\ohiogov.png" alt="Ohio.gov">
         </div>
@@ -25,14 +26,14 @@
 
     <div id="topbar" class="noprint">
         <div id="topbarLeft" class="col-sm-6">
-            <a>Home</a>
+            <a ng-click="popupWindow('/STARS/src/main/UI/Home.html')">Home</a>
         </div>
         <div id="topbarMid" class="col-sm-5">
             <span class="toolbar_menu_label">testUser</span>
             <span class="toolbar_menu_label">{{date | date:'fullDate'}}</span>
         </div>
         <div id="topbarRight" class="col-sm-1" style="border-left: 1px solid white;">
-            <a ng-click="helpWindow()">Help</a>
+            <a ng-click="popupWindow('/STARS/src/main/UI/Help.html')">Help</a>
         </div>
     </div>
 
@@ -108,8 +109,12 @@
 
                 <div class="form-group">
                     <div class="col-sm-4">
-                        <button type="Cancel" class="btn btn-default" style="margin-right:20px;">cancelt</button>
-                        <button type="Next" class="btn btn-primary">Submit</button>
+                        <button type="Cancel" class="btn btn-default" ng-click="goBack()" style="margin-right:20px;">
+                            cancel
+                        </button>
+                        <button type="Next" class="btn btn-primary" ng-click="goNext()">
+                            Submit
+                        </button>
                     </div>
                 </div>
             </form>
@@ -127,7 +132,7 @@
     <!--Footer-->
     <footer class="col-sm-12">
         <div id="footer">
-            <a>Contact us</a>
+            <a ng-click="popupWindow('/STARS/src/main/UI/ContactUs.html')">Contact us</a>
         </div>
     </footer>
 </body>
