@@ -1,369 +1,307 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="iftaApp">
-<head>
-    <meta charset="UTF-8">
-    <title>IFTA Filing</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="..\css\iftaSelection.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="..\js\iftaApp.js"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-</head>
-<body ng-controller="iftaCtrl">
-    <!--Header-->
-    <div id="iftaHeader">
-        <div id="iftaHeaderLeft">
-            <img src="..\images\ohiogov.png" alt="Ohio.gov">
+<!--Mid-->
+<div class="col-sm-7 iftaContainer">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="control-label col-sm-1" style="width:180px;">Account Number</label>
+            <label class="control-label col-sm-1">12345678</label>
         </div>
-        <div id="iftaHeaderRight">
-            <img src="..\images\ohio.gif" alt="Ohio">
+        <div class="form-group">
+            <label class="control-label col-sm-1" style="width:180px;">Filing Period Ending</label>
+            <label class="control-label col-sm-1" style="width:100px;">09/30/2014</label>
+            <label class="control-label col-sm-1">Original</label>
         </div>
-    </div>
+    </form>
 
-    <div id="topbar" class="noprint">
-        <div id="topbarLeft" class="col-sm-6">
-            <a>Home</a>
+    <hr>
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="control-label col-sm-12">Fuel Type Schedule Summary</label>
         </div>
-        <div id="topbarMid" class="col-sm-5">
-            <span class="toolbar_menu_label">testUser</span>
-            <span class="toolbar_menu_label">{{date | date:'fullDate'}}</span>
+        <div class="form-group">
+            <p class="col-sm-12 message-general-warning">* All fields are required</p>
         </div>
-        <div id="topbarRight" class="col-sm-1" style="border-left: 1px solid white;">
-            <a ng-click="helpWindow()">Help</a>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Number of Vehicles</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" value="0">
+            </div>
         </div>
-    </div>
+    </form>
 
-    <div id="subMenu" class="col-sm-12">
-        <span>International Fuel Tax Agreement (IFTA)</span>
-    </div>
+    <table border="1" width="100%">
+        <tr class="headColor">
+            <th colspan="4">Diesel Summary</th>
+        </tr>
 
-    <!--Body-->
-    <div class="row">
-        <!--Left-->
-        <div class="col-sm-2">
-            <ol class="navLeft">
-                <li>Select Filing Period</li>
-                <li>Enter Information</li>
-                <li>Review and File</li>
-                <li>Confirmation</li>
-            </ol>
-        </div>
+        <tr class="bodyColorOdd">
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C2</h4>
+                    <lable>Total Miles traveled in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C3</h4>
+                    <lable>Total Gallons purchased in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C4</h4>
+                    <lable>Average MPG</lable>
+                </form>
+            </td>
+            <td align="center">
+                <button class="btn btn-default">Show Schedule</button>
+            </td>
+        </tr>
+        <tr class="footColor">
+            <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+        </tr>
+    </table>
 
-        <!--Mid-->
-        <div class="col-sm-7 iftaContainer">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label class="control-label col-sm-1" style="width:180px;">Account Number</label>
-                    <label class="control-label col-sm-1">12345678</label>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-1" style="width:180px;">Filing Period Ending</label>
-                    <label class="control-label col-sm-1" style="width:100px;">09/30/2014</label>
-                    <label class="control-label col-sm-1">Original</label>
-                </div>
-            </form>
+    <br/>
 
-            <hr>
+    <table border="1" width="100%">
+        <tr class="headColor">
+            <th colspan="4">Compressed Natural Gas Summary</th>
+        </tr>
 
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label class="control-label col-sm-12">Fuel Type Schedule Summary</label>
-                </div>
-                <div class="form-group">
-                    <p class="col-sm-12 message-general-warning">* All fields are required</p>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Number of Vehicles</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" value="0">
-                    </div>
-                </div>
-            </form>
+        <tr class="bodyColorOdd">
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C2</h4>
+                    <lable>Total Miles traveled in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C3</h4>
+                    <lable>Total Gallons purchased in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C4</h4>
+                    <lable>Average MPG</lable>
+                </form>
+            </td>
+            <td align="center">
+                <button class="btn btn-default">Show Schedule</button>
+            </td>
+        </tr>
+        <tr class="footColor">
+            <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+        </tr>
+    </table>
 
-            <table border="1" width="100%">
-                <tr class="headColor">
-                    <th colspan="4">Diesel Summary</th>
-                </tr>
+    <br/>
 
-                <tr class="bodyColorOdd">
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C2</h4>
-                            <lable>Total Miles traveled in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C3</h4>
-                            <lable>Total Gallons purchased in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C4</h4>
-                            <lable>Average MPG</lable>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-default">Show Schedule</button>
-                    </td>
-                </tr>
-                <tr class="footColor">
-                    <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                </tr>
-            </table>
+    <table border="1" width="100%">
+        <tr class="headColor">
+            <th colspan="4">Gasohol Summary</th>
+        </tr>
 
-            <br/>
+        <tr class="bodyColorOdd">
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C2</h4>
+                    <lable>Total Miles traveled in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C3</h4>
+                    <lable>Total Gallons purchased in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C4</h4>
+                    <lable>Average MPG</lable>
+                </form>
+            </td>
+            <td align="center">
+                <button class="btn btn-default">Show Schedule</button>
+            </td>
+        </tr>
+        <tr class="footColor">
+            <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+        </tr>
+    </table>
 
-            <table border="1" width="100%">
-                <tr class="headColor">
-                    <th colspan="4">Compressed Natural Gas Summary</th>
-                </tr>
+    <br/>
 
-                <tr class="bodyColorOdd">
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C2</h4>
-                            <lable>Total Miles traveled in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C3</h4>
-                            <lable>Total Gallons purchased in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C4</h4>
-                            <lable>Average MPG</lable>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-default">Show Schedule</button>
-                    </td>
-                </tr>
-                <tr class="footColor">
-                    <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                </tr>
-            </table>
+    <table border="1" width="100%">
+        <tr class="headColor">
+            <th colspan="4">Gasoline Summary</th>
+        </tr>
 
-            <br/>
+        <tr class="bodyColorOdd">
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C2</h4>
+                    <lable>Total Miles traveled in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C3</h4>
+                    <lable>Total Gallons purchased in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C4</h4>
+                    <lable>Average MPG</lable>
+                </form>
+            </td>
+            <td align="center">
+                <button class="btn btn-default">Show Schedule</button>
+            </td>
+        </tr>
+        <tr class="footColor">
+            <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+        </tr>
+    </table>
 
-            <table border="1" width="100%">
-                <tr class="headColor">
-                    <th colspan="4">Gasohol Summary</th>
-                </tr>
+    <br/>
 
-                <tr class="bodyColorOdd">
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C2</h4>
-                            <lable>Total Miles traveled in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C3</h4>
-                            <lable>Total Gallons purchased in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C4</h4>
-                            <lable>Average MPG</lable>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-default">Show Schedule</button>
-                    </td>
-                </tr>
-                <tr class="footColor">
-                    <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                </tr>
-            </table>
+    <table border="1" width="100%">
+        <tr class="headColor">
+            <th colspan="4">Liquid Natural Gas Summary</th>
+        </tr>
 
-            <br/>
+        <tr class="bodyColorOdd">
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C2</h4>
+                    <lable>Total Miles traveled in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C3</h4>
+                    <lable>Total Gallons purchased in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C4</h4>
+                    <lable>Average MPG</lable>
+                </form>
+            </td>
+            <td align="center">
+                <button class="btn btn-default">Show Schedule</button>
+            </td>
+        </tr>
+        <tr class="footColor">
+            <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+        </tr>
+    </table>
 
-            <table border="1" width="100%">
-                <tr class="headColor">
-                    <th colspan="4">Gasoline Summary</th>
-                </tr>
+    <br/>
 
-                <tr class="bodyColorOdd">
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C2</h4>
-                            <lable>Total Miles traveled in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C3</h4>
-                            <lable>Total Gallons purchased in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C4</h4>
-                            <lable>Average MPG</lable>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-default">Show Schedule</button>
-                    </td>
-                </tr>
-                <tr class="footColor">
-                    <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                </tr>
-            </table>
+    <table border="1" width="100%">
+        <tr class="headColor">
+            <th colspan="4">Propane Summary</th>
+        </tr>
 
-            <br/>
+        <tr class="bodyColorOdd">
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C2</h4>
+                    <lable>Total Miles traveled in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C3</h4>
+                    <lable>Total Gallons purchased in all jurisdictions</lable>
+                    <input type="text" class="form-control input-right" value="0">
+                </form>
+            </td>
+            <td align="center" valign="top">
+                <form>
+                    <h4 align="left">C4</h4>
+                    <lable>Average MPG</lable>
+                </form>
+            </td>
+            <td align="center">
+                <button class="btn btn-default">Show Schedule</button>
+            </td>
+        </tr>
+        <tr class="footColor">
+            <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+            <td align="right">0</td>
+        </tr>
+    </table>
 
-            <table border="1" width="100%">
-                <tr class="headColor">
-                    <th colspan="4">Liquid Natural Gas Summary</th>
-                </tr>
+    <br/>
 
-                <tr class="bodyColorOdd">
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C2</h4>
-                            <lable>Total Miles traveled in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C3</h4>
-                            <lable>Total Gallons purchased in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C4</h4>
-                            <lable>Average MPG</lable>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-default">Show Schedule</button>
-                    </td>
-                </tr>
-                <tr class="footColor">
-                    <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                </tr>
-            </table>
-
-            <br/>
-
-            <table border="1" width="100%">
-                <tr class="headColor">
-                    <th colspan="4">Propane Summary</th>
-                </tr>
-
-                <tr class="bodyColorOdd">
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C2</h4>
-                            <lable>Total Miles traveled in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C3</h4>
-                            <lable>Total Gallons purchased in all jurisdictions</lable>
-                            <input type="text" class="form-control input-right" value="0">
-                        </form>
-                    </td>
-                    <td align="center" valign="top">
-                        <form>
-                            <h4 align="left">C4</h4>
-                            <lable>Average MPG</lable>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-default">Show Schedule</button>
-                    </td>
-                </tr>
-                <tr class="footColor">
-                    <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                    <td align="right">0</td>
-                </tr>
-            </table>
-
-            <br/>
-
-            <form class="form-horizontal" role="form">
-                <div width="100%" style="padding-left:0px;">
-                    <label class="control-label">Close Account</label>
-                    <label class="message-general-warning">(optional)</label>
-                    <p>If you are closing this account, enter the date you wish to cancel the account below. If the closing
-                        date is after the filing period ending date of this return, remember that you are requiredto file
-                        returns up to and including the filing period that corresponds with your closing date.
-                    </p>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label lable-default" style="padding-right:0">Account Closing Date</label>
-                    <div class="col-sm-4">
-                        <input id="datepicker" type="text" class="form-control input-left"/>
-                        <label class="control-label" style="font-weight:normal;margin-left:10px;">yyyy</label>
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-4">
-                        <button type="Cancel" class="btn btn-default" style="margin-right:20px;">Cancel</button>
-                        <button type="Next" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </form>
+    <form class="form-horizontal" role="form">
+        <div width="100%" style="padding-left:0px;">
+            <label class="control-label">Close Account</label>
+            <label class="message-general-warning">(optional)</label>
+            <p>If you are closing this account, enter the date you wish to cancel the account below. If the closing
+                date is after the filing period ending date of this return, remember that you are requiredto file
+                returns up to and including the filing period that corresponds with your closing date.
+            </p>
         </div>
 
-        <div class="col-sm-2 tips">
-            <label class="control-label">Tips:</label>
-            <ul>
-                <li>Coming soon</li>
-            </ul>
-        </div>
-    </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label lable-default" style="padding-right:0">Account Closing Date</label>
+            <div class="col-sm-4">
+                <input id="datepicker" type="text" class="form-control input-left"/>
+                <label class="control-label" style="font-weight:normal;margin-left:10px;">yyyy</label>
+            </div>
 
-    <footer class="col-sm-12">
-        <div id="footer">
-            <a>Contact us</a>
         </div>
-    </footer>
-</body>
-</html>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <a href="#/iftaSelection.html" type="Cancel" class="btn btn-default" style="margin-right:20px;">Cancel</a>
+                <button type="Next" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="col-sm-2 tips">
+    <label class="control-label">Tips:</label>
+    <ul>
+        <li>Coming soon</li>
+    </ul>
+</div>

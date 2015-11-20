@@ -6,17 +6,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="..\css\iftaSelection.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
     <script src="..\js\iftaApp.js"></script>
+    <script src="..\js\iftaSelectionApp.js"></script>
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>
-<body>
-<!--Header-->
-<div id="header">
-    <div id="iftaHeader" ng-controller="iftaCtrl">
+<body ng-controller="iftaCtrl">
+    <!--Header-->
+    <div id="iftaHeader">
         <div id="iftaHeaderLeft">
             <img src="..\images\ohiogov.png" alt="Ohio.gov">
         </div>
@@ -41,27 +41,27 @@
     <div id="subMenu" class="col-sm-12">
         <span>International Fuel Tax Agreement (IFTA)</span>
     </div>
-</div>
 
-<!--Body-->
-<div>
-    <div class="col-sm-12">
+    <!--Body-->
+    <div class="row">
+        <!--Left-->
+        <div class="col-sm-2">
+            <ol class="navLeft">
+                <li>Select Filing Period</li>
+                <li>Enter Information</li>
+                <li>Review and File</li>
+                <li>Confirmation</li>
+            </ol>
+        </div>
+
         <div ng-view></div>
-        <button type="Cancel" class="btn btn-default" ng-click="goBack()" style="margin-right:20px;">
-            cancel
-        </button>
-        <button type="Next" class="btn btn-primary" ng-click="goNext()">
-            Submit
-        </button>
     </div>
-</div>
 
-
-<!--Footer-->
-<footer class="col-sm-12">
-    <div id="footer">
-        <a ng-click="popupWindow('/STARS/src/main/UI/ContactUs.html')">Contact us</a>
-    </div>
-</footer>
+    <!--Footer-->
+    <footer class="col-sm-12">
+        <div id="footer">
+            <a ng-click="popupWindow('/STARS/src/main/UI/Contact.html')">Contact us</a>
+        </div>
+    </footer>
 </body>
 </html>

@@ -220,3 +220,8 @@ table, th, td {
     display: inline;
     margin-right: 10px;
 }
+
+.error {
+    color:#A74426;
+    padding-top:7px;
+}

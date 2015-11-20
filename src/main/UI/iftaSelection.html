@@ -1,139 +1,89 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="iftaApp" >
-<head>
-    <meta charset="UTF-8">
-    <title>IFTA Selection</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="..\css\iftaSelection.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
-    <script src="..\js\iftaApp.js"></script>
-
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-</head>
-<body>
-    <!--Header-->
-    <div id="iftaHeader" ng-controller="iftaCtrl">
-        <div id="iftaHeaderLeft">
-            <img src="..\images\ohiogov.png" alt="Ohio.gov">
-        </div>
-        <div id="iftaHeaderRight">
-            <img src="..\images\ohio.gif" alt="Ohio">
-        </div>
-    </div>
-
-    <div id="topbar" class="noprint">
-        <div id="topbarLeft" class="col-sm-6">
-            <a ng-click="popupWindow('/STARS/src/main/UI/Home.html')">Home</a>
-        </div>
-        <div id="topbarMid" class="col-sm-5">
-            <span class="toolbar_menu_label">testUser</span>
-            <span class="toolbar_menu_label">{{date | date:'fullDate'}}</span>
-        </div>
-        <div id="topbarRight" class="col-sm-1" style="border-left: 1px solid white;">
-            <a ng-click="popupWindow('/STARS/src/main/UI/Help.html')">Help</a>
-        </div>
-    </div>
-
-    <div id="subMenu" class="col-sm-12">
-        <span>International Fuel Tax Agreement (IFTA)</span>
-    </div>
-
-    <!--Body-->
-    <div class="row">
-        <!--Left-->
-        <div class="col-sm-2">
-            <ol class="navLeft">
-                <li>Select Filing Period</li>
-                <li>Enter Information</li>
-                <li>Review and File</li>
-                <li>Confirmation</li>
-            </ol>
+<!--Mid-->
+<div class="col-sm-7 iftaContainer">
+    <form class="form-horizontal" role="form" name="iftaForm" novalidate>
+        <div class="form-group">
+            <span class="col-sm-4 message-general-warning">* All fields are required</span>
         </div>
 
-        <!--Mid-->
-        <div class="col-sm-7 iftaContainer">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <span class="col-sm-4 message-general-warning">* All fields are required</span>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Account Number:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" maxlength="8" name="accountNumber"
+                       ng-model="accountNumber" ng-minlength="8" ng-pattern="/^(0|[1-9][0-9]*)$/"
+                       required>
+            </div>
+            <div ng-show="submitted" role="alert" class="col-sm-3 error">
+                <div ng-show="iftaForm.accountNumber.$error.pattern
+                        || iftaForm.accountNumber.$error.required ||iftaForm.accountNumber.$error.minlength">
+                    Value is mandatory
                 </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Account Number:</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" maxlength="8">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Filing Year:</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" maxlength="4">
-                    </div>
-                    <label class="control-label col-sm-1">yyyy</label>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Period:</label>
-                    <div class="col-sm-2">
-                        <div class="radio">
-                            <label><input type="radio" name="periodRadio"/>Q1 Jan-Mar</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="periodRadio"/>Q2 Apr-Jun</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="periodRadio"/>Q3 Jul-Sep</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="periodRadio"/>Q4 Oct-Dec</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Type of Filing</label>
-                    <div class="col-sm-2">
-                        <div class="radio">
-                            <label><input type="radio" name="filingRadio"/>Original</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="filingRadio"/>Amended</label>
-                        </div>
-                    </div>
-                </div>
-
-                <br/>
-
-                <div class="form-group">
-                    <div class="col-sm-4">
-                        <button type="Cancel" class="btn btn-default" ng-click="goBack()" style="margin-right:20px;">
-                            cancel
-                        </button>
-                        <button type="Next" class="btn btn-primary" ng-click="goNext()">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
 
-        <!--right-->
-        <div class="col-sm-2 tips">
-            <label class="control-label">Tips:</label>
-            <ul>
-                <li>Coming soon</li>
-            </ul>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Filing Year:</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" maxlength="4" name="filingYear"
+                       ng-model="filingYear" ng-minlength="4" ng-pattern="/^(0|[1-9][0-9]*)$/"
+                       required>
+            </div>
+            <label class="control-label col-sm-1">yyyy</label>
+            <div ng-show="submitted" role="alert" class="col-sm-3 error">
+                <div ng-show="iftaForm.filingYear.$error.pattern
+                        || iftaForm.filingYear.$error.required ||iftaForm.filingYear.$error.minlength">
+                    Value is mandatory
+                </div>
+            </div>
         </div>
-    </div>
 
-    <!--Footer-->
-    <footer class="col-sm-12">
-        <div id="footer">
-            <a ng-click="popupWindow('/STARS/src/main/UI/ContactUs.html')">Contact us</a>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Period:</label>
+            <div class="col-sm-2">
+                <div class="radio" ng-repeat="period in periods">
+                    <label>
+                        <input type="radio" name="periodRadio" value="{{period.quarter}}" equired/>
+                        {{period.quarter}}
+                    </label>
+                </div>
+            </div>
+            <div ng-show="submitted" role="alert" class="col-sm-3 error">
+                <div ng-show="iftaForm.periodRadio.$invalid">
+                    Value is mandatory
+                </div>
+            </div>
+</div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Type of Filing</label>
+            <div class="col-sm-2">
+                <div class="radio">
+                    <label><input type="radio" name="filingRadio"/>Original</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="filingRadio"/>Amended</label>
+                </div>
+            </div>
         </div>
-    </footer>
-</body>
-</html>
+
+        <br/>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <a type="Cancel" class="btn btn-default" style="margin-right:20px;">
+                    cancel
+                </a>
+                <a href="#/iftaSelection.html" type="Next" class="btn btn-primary">
+                    Submit
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--right-->
+<div class="col-sm-2 tips">
+    <label class="control-label">Tips:</label>
+    <ul>
+        <li>Coming soon</li>
+    </ul>
+</div>
