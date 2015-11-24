@@ -9,10 +9,10 @@
             <label class="control-label col-sm-2">Account Number:</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" maxlength="8" name="accountNumber"
-                       ng-model="accountNumber" ng-minlength="8" ng-pattern="/^(0|[1-9][0-9]*)$/"
+                       ng-model="ifta.accountNumber" ng-minlength="8" ng-pattern="/^(0|[1-9][0-9]*)$/"
                        required>
             </div>
-            <div ng-show="submitted" role="alert" class="col-sm-3 error">
+            <div role="alert" class="col-sm-3 error">
                 <div ng-show="iftaForm.accountNumber.$error.pattern
                         || iftaForm.accountNumber.$error.required ||iftaForm.accountNumber.$error.minlength">
                     Value is mandatory
@@ -24,11 +24,11 @@
             <label class="control-label col-sm-2">Filing Year:</label>
             <div class="col-sm-1">
                 <input type="text" class="form-control" maxlength="4" name="filingYear"
-                       ng-model="filingYear" ng-minlength="4" ng-pattern="/^(0|[1-9][0-9]*)$/"
+                       ng-model="ifta.filingYear" ng-minlength="4" ng-pattern="/^(0|[1-9][0-9]*)$/"
                        required>
             </div>
             <label class="control-label col-sm-1">yyyy</label>
-            <div ng-show="submitted" role="alert" class="col-sm-3 error">
+            <div role="alert" class="col-sm-3 error">
                 <div ng-show="iftaForm.filingYear.$error.pattern
                         || iftaForm.filingYear.$error.required ||iftaForm.filingYear.$error.minlength">
                     Value is mandatory
@@ -41,27 +41,29 @@
             <div class="col-sm-2">
                 <div class="radio" ng-repeat="period in periods">
                     <label>
-                        <input type="radio" name="periodRadio" value="{{period.quarter}}" equired/>
+                        <input type="radio" name="filingPeriod" ng-model="ifta.filingPeriod"
+                               value="{{period.quarter}}" required/>
                         {{period.quarter}}
                     </label>
                 </div>
             </div>
-            <div ng-show="submitted" role="alert" class="col-sm-3 error">
-                <div ng-show="iftaForm.periodRadio.$invalid">
+            <div ng-show="!ifta.filingPeriod" role="alert" class="col-sm-3 error">
                     Value is mandatory
-                </div>
             </div>
-</div>
+        </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-2">Type of Filing</label>
+            <label class="control-label col-sm-2">Type of Filing:</label>
             <div class="col-sm-2">
-                <div class="radio">
-                    <label><input type="radio" name="filingRadio"/>Original</label>
+                <div class="radio" ng-repeat="filingType in filingTypes">
+                    <label><input type="radio" name="filingType" ng-model="ifta.filingType"
+                                  value="{{filingType.type}}" required/>
+                    {{filingType.type}}
+                    </label>
                 </div>
-                <div class="radio">
-                    <label><input type="radio" name="filingRadio"/>Amended</label>
-                </div>
+            </div>
+            <div ng-show="!ifta.filingType" role="alert" class="col-sm-3 error">
+                Value is mandatory
             </div>
         </div>
 
@@ -72,7 +74,7 @@
                 <a type="Cancel" class="btn btn-default" style="margin-right:20px;">
                     cancel
                 </a>
-                <a href="#/iftaSelection.html" type="Next" class="btn btn-primary">
+                <a href="#/iftaFiling.html" type="Next" class="btn btn-primary" onclick="test()">
                     Submit
                 </a>
             </div>

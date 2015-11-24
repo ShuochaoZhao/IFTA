@@ -4,7 +4,7 @@
 
 var iftaSelectionApp = angular.module('iftaSelectionApp', []);
 
-iftaSelectionApp.controller('iftaSelectionCtrl', function($scope) {
+iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope) {
     $scope.periods=[{
         quarter: "Q1 Jan-Mar"
     }, {
@@ -15,4 +15,18 @@ iftaSelectionApp.controller('iftaSelectionCtrl', function($scope) {
         quarter: "Q4 Oct-Dec"
     }];
 
+    $scope.filingTypes=[{
+        type: "Original"
+    }, {
+        type: "Amended"
+    }];
+
+    $scope.ifta = {
+        accountNumber: "",
+        filingYear:"",
+        filingPeriod: "",
+        filingType: ""
+    };
+
+     $rootScope.accountNumber = $scope.ifta.accountNumber;
 });

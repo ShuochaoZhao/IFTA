@@ -15,28 +15,40 @@ iftaApp.config(function($routeProvider) {
         otherwise({
             redirectTo: '/'
         });
-});
+})
+    .run(function($rootScope, $location) {
+        $rootScope.$on("$routeChangeStart", function (event, next, current) {
+            if (next.templateUrl === '../UI/iftaFiling.html') {
+                // no logged user, redirect to /login
+                alert("Hi");
+                alert($rootScope.accountNumber);
+                if($rootScope.accountNumber != "12345678") {
+                    $location.path('../UI/iftaSelection.html');
+                }
+            }
+        });
+    });
 
 iftaApp.controller('iftaCtrl', function($scope) {
 
-        function today() {
-            $scope.date = new Date();
-        }
-        today();
+    function today() {
+        $scope.date = new Date();
+    }
+    today();
 
-        function datePicker() {
-            $("#datepicker").datepicker({
-                showOn: "button",
-                buttonImage: "../images/iconCalendar.png",
-                buttonImageOnly: true,
-                buttonText: "Select date"
-            });
-        }
-        datePicker();
+    function datePicker() {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "../images/iconCalendar.png",
+            buttonImageOnly: true,
+            buttonText: "Select date"
+        });
+    }
+    datePicker();
 
-        $scope.popupWindow = function(URL) {
-            window.open(URL, "hahaha", "width=300, height=300");
-        }
-    });
+    $scope.popupWindow = function(URL) {
+        window.open(URL, "hahaha", "width=300, height=300");
+    }
+});
 
 
