@@ -19,8 +19,6 @@ iftaApp.config(function($routeProvider) {
     .run(function($rootScope, $location) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             if (next.templateUrl === '../UI/iftaFiling.html') {
-                // no logged user, redirect to /login
-                alert("Hi");
                 alert($rootScope.accountNumber);
                 if($rootScope.accountNumber != "12345678") {
                     $location.path('../UI/iftaSelection.html');
