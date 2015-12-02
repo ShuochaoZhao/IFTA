@@ -9,12 +9,10 @@
             <label class="control-label col-sm-2">Account Number:</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" maxlength="8" name="accountNumber"
-                       ng-model="ifta.accountNumber" ng-minlength="8" ng-pattern="/^(0|[1-9][0-9]*)$/"
-                       required>
+                       ng-model="lastVal">
             </div>
-            <div role="alert" class="col-sm-3 error">
-                <div ng-show="iftaForm.accountNumber.$error.pattern
-                        || iftaForm.accountNumber.$error.required ||iftaForm.accountNumber.$error.minlength">
+            <div role="alert" class="col-sm-3 error" ng-show="{{showErrorVal}}">
+                <div ng-show="{{ifta.accountNumberError}}">
                     Value is mandatory
                 </div>
             </div>
@@ -24,13 +22,11 @@
             <label class="control-label col-sm-2">Filing Year:</label>
             <div class="col-sm-1">
                 <input type="text" class="form-control" maxlength="4" name="filingYear"
-                       ng-model="ifta.filingYear" ng-minlength="4" ng-pattern="/^(0|[1-9][0-9]*)$/"
-                       required>
+                       ng-model="ifta.filingYear">
             </div>
             <label class="control-label col-sm-1">yyyy</label>
-            <div role="alert" class="col-sm-3 error">
-                <div ng-show="iftaForm.filingYear.$error.pattern
-                        || iftaForm.filingYear.$error.required ||iftaForm.filingYear.$error.minlength">
+            <div role="alert" class="col-sm-3 error" ng-show="true">
+                <div ng-show="{{ifta.filingYearError}}">
                     Value is mandatory
                 </div>
             </div>
@@ -47,8 +43,10 @@
                     </label>
                 </div>
             </div>
-            <div ng-show="!ifta.filingPeriod" role="alert" class="col-sm-3 error">
+            <div role="alert" class="col-sm-3 error" ng-show="true">
+                <div ng-show="{{ifta.filingPeriodError}}" role="alert" class="col-sm-3 error">
                     Value is mandatory
+                </div>
             </div>
         </div>
 
@@ -62,8 +60,10 @@
                     </label>
                 </div>
             </div>
-            <div ng-show="!ifta.filingType" role="alert" class="col-sm-3 error">
-                Value is mandatory
+            <div role="alert" class="col-sm-3 error" ng-show="true">
+                <div ng-show="{{ifta.filingTypeError}}" role="alert" class="col-sm-3 error">
+                    Value is mandatory
+                </div>
             </div>
         </div>
 
@@ -74,7 +74,7 @@
                 <a type="Cancel" class="btn btn-default" style="margin-right:20px;">
                     cancel
                 </a>
-                <a href="#/iftaFiling.html" type="Next" class="btn btn-primary">
+                <a href="#/iftaFiling.html" type="Next" class="btn btn-primary" ng-click="onSubmit()">
                     Submit
                 </a>
             </div>

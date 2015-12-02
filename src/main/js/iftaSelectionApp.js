@@ -2,22 +2,27 @@
  * Created by szhao on 11/20/2015.
  */
 
-var iftaSelectionApp = angular.module('iftaSelectionApp', []);
+var iftaSelectionApp = angular.module('iftaSelectionApp', ['ngCookies']);
 
-iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope) {
+iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, $cookies, iftaValidation) {
+
+    $scope.showErrorVal = false;
 
     $scope.ifta = {
-        accountNumber: "",
+        /*accountNumber: "",
         filingYear:"",
         filingPeriod: "",
-        filingType: "",
-/*
+        filingType: "",*/
+
         // boolean
-        accountNumberBoolean: false,
-        filingYearBoolean: false,
-        filingPeriodBoolean: false,
-        filingTypeBoolean: false,*/
+        accountNumberError: true,
+        filingYearError: true,
+        filingPeriodError: true,
+        filingTypeError: true,
+        toFiling: false
     };
+
+
 
     $scope.periods=[{
         quarter: "Q1 Jan-Mar"
@@ -35,22 +40,24 @@ iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope) {
         type: "Amended"
     }];
 
-    // Validation
-
-    // Account Number Validation
-    function accountNumberVal() {
-        /*var reg = new RegExp('/^(0|[1-9][0-9]*)$/');*/
-        var reg = new RegExp('/^(0|[1-9][0-9]*)$/');
-        if($scope.ifta.accountNumber.length === 8) {
-            alert(reg.test($scope.ifta.accountNumber));
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    $scope.$watch('ifta.accountNumber', function() {
-        $rootScope.accountNumber = accountNumberVal();
+    $scope.$watchGroup(['ifta.accountNumber', 'ifta.filingYear', "ifta.filingPeriod", "ifta.filingType"], function() {
+            $scope.ifta.accountNumberError = !iftaValidation.accountNumberVal($scope.ifta.accountNumber);
+            $scope.ifta.filingYearError = !iftaValidation.filingYearVal($scope.ifta.filingYear);
+            $scope.ifta.filingPeriodError = !iftaValidation.filingPeriodVal($scope.ifta.filingPeriod);
+            $scope.ifta.filingTypeError = !iftaValidation.filingTypeVal($scope.ifta.filingType);
+            $rootScope.toFiling = !$scope.ifta.accountNumberError && !$scope.ifta.filingYearError
+                && !$scope.ifta.filingPeriodError && !$scope.ifta.filingTypeError;
     }, true);
+
+    // Show error message when click
+    $scope.onSubmit= function() {
+        alert("I am working");
+        $cookies.put('iftaAccuntNumber', $scope.ifta.accountNumber);
+        $scope.ifta.accountNumber = $cookies.get('iftaAccuntNumber')
+    };
+
+    $scope.ifta.accountNumber = $cookies.get('iftaAccuntNumber');
 });
+
+
 
