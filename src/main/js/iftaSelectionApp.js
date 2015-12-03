@@ -9,10 +9,10 @@ iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, $c
     $scope.showErrorVal = false;
 
     $scope.ifta = {
-        /*accountNumber: "",
+        accountNumber: "",
         filingYear:"",
         filingPeriod: "",
-        filingType: "",*/
+        filingType: "",
 
         // boolean
         accountNumberError: true,
@@ -49,14 +49,14 @@ iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, $c
                 && !$scope.ifta.filingPeriodError && !$scope.ifta.filingTypeError;
     }, true);
 
-    // Show error message when click
+    /*// Show error message when click
     $scope.onSubmit= function() {
         alert("I am working");
         $cookies.put('iftaAccuntNumber', $scope.ifta.accountNumber);
         $scope.ifta.accountNumber = $cookies.get('iftaAccuntNumber')
     };
 
-    $scope.ifta.accountNumber = $cookies.get('iftaAccuntNumber');
+    $scope.ifta.accountNumber = $cookies.get('iftaAccuntNumber');*/
 });
 
 
