@@ -2,26 +2,12 @@
  * Created by szhao on 11/20/2015.
  */
 
-var iftaSelectionApp = angular.module('iftaSelectionApp', ['ngCookies']);
+var iftaSelectionApp = angular.module('iftaSelectionApp', []);
 
-iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, $cookies, iftaValidation) {
+iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, iftaValidation, iftaInfo) {
 
-    $scope.showErrorVal = false;
-
-    $scope.ifta = {
-        accountNumber: "",
-        filingYear:"",
-        filingPeriod: "",
-        filingType: "",
-
-        // boolean
-        accountNumberError: true,
-        filingYearError: true,
-        filingPeriodError: true,
-        filingTypeError: true,
-        toFiling: false
-    };
-
+    // Pass information data to the page
+    $scope.ifta = iftaInfo;
 
 
     $scope.periods=[{
@@ -30,7 +16,7 @@ iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, $c
         quarter: "Q2 Apr-Jun"
     }, {
         quarter: "Q3 Jul-Sep"
-        }, {
+    }, {
         quarter: "Q4 Oct-Dec"
     }];
 
@@ -48,15 +34,6 @@ iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, $c
             $rootScope.toFiling = !$scope.ifta.accountNumberError && !$scope.ifta.filingYearError
                 && !$scope.ifta.filingPeriodError && !$scope.ifta.filingTypeError;
     }, true);
-
-    /*// Show error message when click
-    $scope.onSubmit= function() {
-        alert("I am working");
-        $cookies.put('iftaAccuntNumber', $scope.ifta.accountNumber);
-        $scope.ifta.accountNumber = $cookies.get('iftaAccuntNumber')
-    };
-
-    $scope.ifta.accountNumber = $cookies.get('iftaAccuntNumber');*/
 });
 
 

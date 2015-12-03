@@ -11,7 +11,7 @@
                 <input type="text" class="form-control" maxlength="8" name="accountNumber"
                        ng-model="ifta.accountNumber">
             </div>
-            <div role="alert" class="col-sm-3 error" ng-show="{{showErrorVal}}">
+            <div role="alert" class="col-sm-3 error">
                 <div ng-show="{{ifta.accountNumberError}}">
                     Value is mandatory
                 </div>
@@ -25,7 +25,7 @@
                        ng-model="ifta.filingYear">
             </div>
             <label class="control-label col-sm-1">yyyy</label>
-            <div role="alert" class="col-sm-3 error" ng-show="true">
+            <div role="alert" class="col-sm-3 error">
                 <div ng-show="{{ifta.filingYearError}}">
                     Value is mandatory
                 </div>
@@ -43,10 +43,8 @@
                     </label>
                 </div>
             </div>
-            <div role="alert" class="col-sm-3 error" ng-show="true">
-                <div ng-show="{{ifta.filingPeriodError}}" role="alert" class="col-sm-3 error">
-                    Value is mandatory
-                </div>
+            <div ng-show="{{ifta.filingPeriodError}}" role="alert" class="col-sm-3 error">
+                Value is mandatory
             </div>
         </div>
 
@@ -60,10 +58,8 @@
                     </label>
                 </div>
             </div>
-            <div role="alert" class="col-sm-3 error" ng-show="true">
-                <div ng-show="{{ifta.filingTypeError}}" role="alert" class="col-sm-3 error">
-                    Value is mandatory
-                </div>
+            <div ng-show="{{ifta.filingTypeError}}" role="alert" class="col-sm-3 error">
+                Value is mandatory
             </div>
         </div>
 
@@ -74,7 +70,7 @@
                 <a type="Cancel" class="btn btn-default" style="margin-right:20px;">
                     cancel
                 </a>
-                <a href="#/iftaFiling.html" type="Next" class="btn btn-primary" ng-click="onSubmit()">
+                <a href="#/iftaFiling" type="Next" class="btn btn-primary" ng-click="onSubmit()">
                     Submit
                 </a>
             </div>

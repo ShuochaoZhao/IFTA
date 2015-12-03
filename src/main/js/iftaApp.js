@@ -8,9 +8,9 @@ iftaApp.config(function($routeProvider) {
             templateUrl: '../UI/iftaSelection.html',
             controller: 'iftaSelectionCtrl'
         }).
-        when('/iftaFiling.html', {
+        when('/iftaFiling', {
             templateUrl: '../UI/iftaFiling.html',
-            /*controller: 'iftFilingCtrl'*/
+            controller: 'iftaSelectionCtrl'
         }).
         otherwise({
             redirectTo: '/'
@@ -31,7 +31,7 @@ iftaApp.config(function($routeProvider) {
                 case '/':
                     $rootScope.proId = '1';
                     break;
-                case '/iftaFiling.html':
+                case '/iftaFiling':
                     $rootScope.proId = '2';
                     break;
                 default:
@@ -39,6 +39,23 @@ iftaApp.config(function($routeProvider) {
             }
         });
     });
+
+// Information storage factory
+iftaApp.factory('iftaInfo', function() {
+    return {
+        accountNumber: '',
+        filingYear: '',
+        filingPeriod: '',
+        filingType: '',
+
+        // boolean
+        accountNumberError: '',
+        filingYearError: '',
+        filingPeriodError: '',
+        filingTypeError: '',
+        toFiling: false
+    };
+});
 
 // Validation factory
 iftaApp.factory('iftaValidation', function($http){
@@ -73,7 +90,7 @@ iftaApp.factory('iftaValidation', function($http){
 
         //Filing Period Validation
         filingPeriodVal: function(inputVal) {
-            if(inputVal === undefined) {
+            if(inputVal === '') {
                 return false;
             } else {
                 return true;
@@ -82,7 +99,7 @@ iftaApp.factory('iftaValidation', function($http){
 
         //Filing Type Validation
         filingTypeVal: function(inputVal) {
-            if(inputVal === undefined) {
+            if(inputVal === '') {
                 return false;
             } else {
                 return true;
@@ -123,10 +140,12 @@ iftaApp.controller('iftaCtrl', function($scope, $rootScope) {
         window.open(URL, "hahaha", "width=300, height=300");
     }
 
-    $scope.progresses = [{id:'1', name: 'Select Filing Period' },
-        {id:'2', name: 'Enter Information' },
+    $scope.progresses = [
+        {id:'1', name: 'Select Filing Period'},
+        {id:'2', name: 'Enter Information'},
         {id:'3', name:'Review and File'},
-        {id:'4', name: 'Confirmation'}];
+        {id:'4', name: 'Confirmation'}
+    ];
 });
 
 
