@@ -24,6 +24,20 @@ iftaApp.config(function($routeProvider) {
                 }
             }
         });
+
+        $rootScope.$on("$routeChangeSuccess", function() {
+            $rootScope.currURL = $location.path();
+            switch($rootScope.currURL) {
+                case '/':
+                    $rootScope.proId = '1';
+                    break;
+                case '/iftaFiling.html':
+                    $rootScope.proId = '2';
+                    break;
+                default:
+                    $rootScope.proId = '3';
+            }
+        });
     });
 
 // Validation factory
@@ -83,32 +97,12 @@ iftaApp.directive('iftaProgress', function() {
         restrict: 'A',
         templateUrl: 'iftaProgress.html',
         scope: {
-            customerInfo: '=info'
-        },
+            progress: '=iftaProgress'
+        }
     };
 });
 
-// Progress highlight1111111
-/*iftaApp.directive('activeLink', ['$location', function (location) {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs, current) {
-            var clazz = attrs.activeLink;
-            var path = current.templateUrl;
-            path = path.substring(1); //hack because path does not return including hashbang
-            scope.location = location;
-            scope.$watch('location.path()', function (newPath) {
-                if (path === newPath) {
-                    element.addClass(clazz);
-                } else {
-                    element.removeClass(clazz);
-                }
-            });
-        }
-    };
-}]);*/
-
-iftaApp.controller('iftaCtrl', function($scope) {
+iftaApp.controller('iftaCtrl', function($scope, $rootScope) {
 
     function today() {
         $scope.date = new Date();
@@ -128,6 +122,11 @@ iftaApp.controller('iftaCtrl', function($scope) {
     $scope.popupWindow = function(URL) {
         window.open(URL, "hahaha", "width=300, height=300");
     }
+
+    $scope.progresses = [{id:'1', name: 'Select Filing Period' },
+        {id:'2', name: 'Enter Information' },
+        {id:'3', name:'Review and File'},
+        {id:'4', name: 'Confirmation'}];
 });
 
 

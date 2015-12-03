@@ -11,7 +11,7 @@
     <script src="..\js\iftaApp.js"></script>
     <script src="..\js\iftaSelectionApp.js"></script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>s
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>
 <body ng-controller="iftaCtrl">
@@ -45,7 +45,12 @@
     <!--Body-->
     <div class="row">
         <!--Left-->
-        <div class="col-sm-2" ifta-progress></div>
+        <div class="col-sm-2">
+            <ol class="navLeft">
+                <li ng-repeat="progress in progresses" ifta-progress="progress"
+                    ng-class="{proHigh:progress.id === proId}"></li>
+            </ol>
+        </div>
 
         <!--middle-->
         <div ng-view></div>

@@ -90,6 +90,16 @@ a:hover {
     font-weight: bold;
 }
 
+/*progress highlight*/
+.proHigh {
+    font-weight: bold;
+}
+
+.proHigh::before {
+    background-color: #3866ab !important;
+    color: #FFFFFF !important;
+}
+
 .iftaContainer {
     padding-top: 30px;
     border-left: 1px solid lightGrey;
@@ -225,3 +235,4 @@ table, th, td {
     color:#A74426;
     padding-top:7px;
 }
+
