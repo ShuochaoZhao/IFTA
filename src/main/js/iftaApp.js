@@ -1,6 +1,6 @@
 /*Created by szhao on 10/29/2015.*/
 
-var iftaApp = angular.module('iftaApp', ['ngRoute', 'iftaSelectionApp']);
+var iftaApp = angular.module('iftaApp', ['ngRoute', 'iftaSelectionApp', 'iftaFilingApp']);
 
 iftaApp.config(function($routeProvider) {
     $routeProvider.
@@ -10,7 +10,7 @@ iftaApp.config(function($routeProvider) {
         }).
         when('/iftaFiling', {
             templateUrl: '../UI/iftaFiling.html',
-            controller: 'iftaSelectionCtrl'
+            controller: 'iftaFilingCtrl'
         }).
         otherwise({
             redirectTo: '/'
@@ -119,22 +119,42 @@ iftaApp.directive('iftaProgress', function() {
     };
 });
 
+iftaApp.directive('iftaAccountHead', function(iftaInfo) {
+    return {
+        restrict: 'A',
+        templateUrl:'iftaAccountHead.html',
+        transclude: true,
+        scope: {
+            acntHead: '=iftaAccountHead'
+        },
+
+        link: function (scope) {
+            scope.acntHead = iftaInfo;
+            switch(scope.acntHead.filingPeriod) {
+                case 'Q1 Jan-Mar':
+                    scope.acntHead.filingTime = "3/30/2014"
+                    break;
+                case 'Q2 Apr-Jun':
+                    scope.acntHead.filingTime = "3/30/2014"
+                    break;
+                case 'Q3 Jul-Sep':
+                    scope.acntHead.filingTime = "3/30/2014"
+                    break;
+                case 'Q4 Oct-Dec':
+                    scope.acntHead.filingTime = "3/30/2014"
+                    break;
+            }
+        }
+    };
+});
+
+
 iftaApp.controller('iftaCtrl', function($scope, $rootScope) {
 
     function today() {
         $scope.date = new Date();
     }
     today();
-
-    function datePicker() {
-        $("#datepicker").datepicker({
-            showOn: "button",
-            buttonImage: "../images/iconCalendar.png",
-            buttonImageOnly: true,
-            buttonText: "Select date"
-        });
-    }
-    datePicker();
 
     $scope.popupWindow = function(URL) {
         window.open(URL, "hahaha", "width=300, height=300");
@@ -146,6 +166,11 @@ iftaApp.controller('iftaCtrl', function($scope, $rootScope) {
         {id:'3', name:'Review and File'},
         {id:'4', name: 'Confirmation'}
     ];
+
+/*
+    $scope.acntHead =
+    {accountNumber: '1234567test', filingPeriod: '2222test'};*/
+
 });
 
 
