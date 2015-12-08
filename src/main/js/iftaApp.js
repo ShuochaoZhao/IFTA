@@ -1,6 +1,6 @@
 /*Created by szhao on 10/29/2015.*/
 
-var iftaApp = angular.module('iftaApp', ['ngRoute', 'iftaSelectionApp', 'iftaFilingApp']);
+var iftaApp = angular.module('iftaApp', ['ngRoute', 'iftaSelectionApp', 'iftaScheduleApp']);
 
 iftaApp.config(function($routeProvider) {
     $routeProvider.
@@ -8,9 +8,13 @@ iftaApp.config(function($routeProvider) {
             templateUrl: '../UI/iftaSelection.html',
             controller: 'iftaSelectionCtrl'
         }).
+        when('/iftaSchedule', {
+            templateUrl: '../UI/iftaSchedule.html',
+            controller: 'iftaScheduleCtrl'
+        }).
         when('/iftaFiling', {
             templateUrl: '../UI/iftaFiling.html',
-            controller: 'iftaFilingCtrl'
+            controller: 'iftaScheduleCtrl'
         }).
         otherwise({
             redirectTo: '/'
@@ -18,8 +22,8 @@ iftaApp.config(function($routeProvider) {
 })
     .run(function($rootScope, $location) {
         $rootScope.$on("$routeChangeStart", function (event, next) {
-            if (next.templateUrl === '../UI/iftaFiling.html') {
-                if(!$rootScope.toFiling) {
+            if (next.templateUrl === '../UI/iftaSchedule.html') {
+                if(!$rootScope.toSchedule) {
                     $location.path('../UI/iftaSelection.html');
                 }
             }
@@ -30,6 +34,9 @@ iftaApp.config(function($routeProvider) {
             switch($rootScope.currURL) {
                 case '/':
                     $rootScope.proId = '1';
+                    break;
+                case '/iftaSchedule':
+                    $rootScope.proId = '2';
                     break;
                 case '/iftaFiling':
                     $rootScope.proId = '2';
@@ -53,7 +60,7 @@ iftaApp.factory('iftaInfo', function() {
         filingYearError: '',
         filingPeriodError: '',
         filingTypeError: '',
-        toFiling: false
+        toSchedule: false
     };
 });
 
@@ -132,18 +139,38 @@ iftaApp.directive('iftaAccountHead', function(iftaInfo) {
             scope.acntHead = iftaInfo;
             switch(scope.acntHead.filingPeriod) {
                 case 'Q1 Jan-Mar':
-                    scope.acntHead.filingTime = "3/30/2014"
+                    scope.acntHead.filingTime = "3/30/"+scope.acntHead.filingYear;
                     break;
                 case 'Q2 Apr-Jun':
-                    scope.acntHead.filingTime = "3/30/2014"
+                    scope.acntHead.filingTime = "6/30/"+scope.acntHead.filingYear;
                     break;
                 case 'Q3 Jul-Sep':
-                    scope.acntHead.filingTime = "3/30/2014"
+                    scope.acntHead.filingTime = "9/30/"+scope.acntHead.filingYear;
                     break;
                 case 'Q4 Oct-Dec':
-                    scope.acntHead.filingTime = "3/30/2014"
+                    scope.acntHead.filingTime = "12/31/"+scope.acntHead.filingYear;
                     break;
             }
+        }
+    };
+});
+
+iftaApp.directive('calendar', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, el, attr, ngModel){
+            $(el).datepicker({
+                dateFormat: 'mm/dd/yy',
+                showOn: "button",
+                buttonImage: "../images/iconCalendar.png",
+                buttonImageOnly: true,
+                showOtherMonths: true,
+                onSelect: function (dateText) {
+                    scope.$apply(function () {
+                        ngModel.$setViewValue(dateText);
+                    });
+                }
+            });
         }
     };
 });
@@ -166,10 +193,6 @@ iftaApp.controller('iftaCtrl', function($scope, $rootScope) {
         {id:'3', name:'Review and File'},
         {id:'4', name: 'Confirmation'}
     ];
-
-/*
-    $scope.acntHead =
-    {accountNumber: '1234567test', filingPeriod: '2222test'};*/
 
 });
 

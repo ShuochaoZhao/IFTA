@@ -31,7 +31,7 @@ iftaSelectionApp.controller('iftaSelectionCtrl', function($scope, $rootScope, if
             $scope.ifta.filingYearError = !iftaValidation.filingYearVal($scope.ifta.filingYear);
             $scope.ifta.filingPeriodError = !iftaValidation.filingPeriodVal($scope.ifta.filingPeriod);
             $scope.ifta.filingTypeError = !iftaValidation.filingTypeVal($scope.ifta.filingType);
-            $rootScope.toFiling = !$scope.ifta.accountNumberError && !$scope.ifta.filingYearError
+            $rootScope.toSchedule = !$scope.ifta.accountNumberError && !$scope.ifta.filingYearError
                 && !$scope.ifta.filingPeriodError && !$scope.ifta.filingTypeError;
     }, true);
 });
