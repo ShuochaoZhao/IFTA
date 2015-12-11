@@ -35,6 +35,34 @@
                 Action
             </th>
         </tr>
+
+        <tr ng-repeat="scheduleData in scheduleDatas">
+            <td align="center">
+                <select class="form-control iftaSelect">
+                    <option class="iftaOption" ng-repeat="jurdctn in jurdctns" ng-model="scheduleData.D1" ng-selected="scheduleData.D1">
+                        {{jurdctn}}
+                    </option>
+                </select>
+            </td>
+            <td align="center">
+                <input calendar type="text" class="form-control input-left datepicker"
+                       ng-model="scheduleData.taxEndDate"/>
+            </td>
+            <td align="center">
+                <input type="text" class="form-control input-right" ng-model="scheduleData.D4">
+            </td>
+            <td align="center">
+                <input type="text" class="form-control input-right" ng-model="scheduleData.D5">
+            </td>
+            <td align="center">
+                <input type="text" class="form-control input-right" value="0" ng-model="scheduleData.D7">
+            </td>
+            <td align="center">
+                <a class="linkGernal" style="padding-right:5px" ng-click="addScheduleData()">Add</a>
+                <a class="linkGernal"  ng-click="deleteScheduleData($index)" style="padding-left:5px">Delete</a>
+            </td>
+        </tr>
+
     </table>
 
 </div>

@@ -1,6 +1,6 @@
 /*Created by szhao on 10/29/2015.*/
 
-var iftaApp = angular.module('iftaApp', ['ngRoute', 'iftaSelectionApp', 'iftaScheduleApp']);
+var iftaApp = angular.module('iftaApp', ['ngRoute', 'iftaSelectionApp', 'iftaScheduleApp', 'iftaFilingApp']);
 
 iftaApp.config(function($routeProvider) {
     $routeProvider.
@@ -14,7 +14,7 @@ iftaApp.config(function($routeProvider) {
         }).
         when('/iftaFiling', {
             templateUrl: '../UI/iftaFiling.html',
-            controller: 'iftaScheduleCtrl'
+            controller: 'iftaFilingCtrl'
         }).
         otherwise({
             redirectTo: '/'
