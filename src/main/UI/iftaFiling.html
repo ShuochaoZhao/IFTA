@@ -14,7 +14,7 @@
         </div>
     </form>
 
-    <table border="1" width="100%">
+    <table id="iftaFT" border="1" width="100%">
         <tr class="headColor">
             <th align="center" class="headerStyle">
                 D1 Jurisdiction
@@ -38,31 +38,48 @@
 
         <tr ng-repeat="scheduleData in scheduleDatas">
             <td align="center">
-                <select class="form-control iftaSelect">
-                    <option class="iftaOption" ng-repeat="jurdctn in jurdctns" ng-model="scheduleData.D1" ng-selected="scheduleData.D1">
-                        {{jurdctn}}
-                    </option>
+                <select class="form-control iftaSelect" ng-init="jurdctns[0]"
+                        ng-model="scheduleData.D1" ng-options="jurdctn for jurdctn in jurdctns">
+                    <option value="">--Select--</option>
                 </select>
             </td>
+
             <td align="center">
                 <input calendar type="text" class="form-control input-left datepicker"
                        ng-model="scheduleData.taxEndDate"/>
             </td>
+
             <td align="center">
                 <input type="text" class="form-control input-right" ng-model="scheduleData.D4">
             </td>
+
             <td align="center">
                 <input type="text" class="form-control input-right" ng-model="scheduleData.D5">
             </td>
+
             <td align="center">
                 <input type="text" class="form-control input-right" value="0" ng-model="scheduleData.D7">
             </td>
+
             <td align="center">
-                <a class="linkGernal" style="padding-right:5px" ng-click="addScheduleData()">Add</a>
-                <a class="linkGernal"  ng-click="deleteScheduleData($index)" style="padding-left:5px">Delete</a>
+                <a class="linkGernal" ng-if="$last" ng-click="addScheduleData()" style="padding-right:10px">Add</a>
+                <a class="linkGernal"  ng-click="deleteScheduleData($index)">Delete</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td colspan="6" align="center" class="footColor" ng-show="!scheduleDatas.length" >
+                <a class="linkGernal" ng-click="addScheduleData()">Click to Start the Jurisdiction Schedule</a>
             </td>
         </tr>
 
     </table>
+
+    <div>
+        <a href="#/iftaSchedule" type="Cancel" class="btn btn-primary" style="margin-top:20px;">
+            Return to Summary
+        </a>
+    </div>
 
 </div>
