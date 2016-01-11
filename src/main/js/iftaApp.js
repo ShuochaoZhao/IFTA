@@ -187,6 +187,7 @@ iftaApp.controller('iftaCtrl', function($scope, $rootScope) {
         window.open(URL, "hahaha", "width=300, height=300");
     }
 
+
     $scope.progresses = [
         {id:'1', name: 'Select Filing Period'},
         {id:'2', name: 'Enter Information'},

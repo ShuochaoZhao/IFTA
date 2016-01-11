@@ -48,7 +48,8 @@
                 </form>
             </td>
             <td align="center">
-                <a class="btn btn-default" href="#/iftaFiling">Show Schedule</a>
+                <a class="btn btn-default" href="#/iftaFiling" data-id="dieselBtn"
+                   ng-click='idPass($event)'>Show Schedule</a>
             </td>
         </tr>
         <tr class="footColor">
@@ -88,7 +89,8 @@
                 </form>
             </td>
             <td align="center">
-                <a class="btn btn-default" href="#/iftaFiling">Show Schedule</a>
+                <a class="btn btn-default" href="#/iftaFiling" data-id="comNaturalBtn"
+                   ng-click='idPass($event)'>Show Schedule</a>
             </td>
         </tr>
         <tr class="footColor">
@@ -128,7 +130,8 @@
                 </form>
             </td>
             <td align="center">
-                <a class="btn btn-default" href="#/iftaFiling">Show Schedule</a>
+                <a class="btn btn-default" href="#/iftaFiling" data-id="gasoholBtn"
+                   ng-click='idPass($event)'>Show Schedule</a>
             </td>
         </tr>
         <tr class="footColor">
@@ -168,7 +171,8 @@
                 </form>
             </td>
             <td align="center">
-                <a class="btn btn-default" href="#/iftaFiling">Show Schedule</a>
+                <a class="btn btn-default" href="#/iftaFiling" data-id="gasBtn"
+                   ng-click='idPass($event)'>Show Schedule</a>
             </td>
         </tr>
         <tr class="footColor">
@@ -208,7 +212,8 @@
                 </form>
             </td>
             <td align="center">
-                <a class="btn btn-default" href="#/iftaFiling">Show Schedule</a>
+                <a class="btn btn-default" href="#/iftaFiling" data-id="liquidBtn"
+                   ng-click='idPass($event)'>Show Schedule</a>
             </td>
         </tr>
         <tr class="footColor">
@@ -248,8 +253,14 @@
                 </form>
             </td>
             <td align="center">
-                <a class="btn btn-default" href="#/iftaFiling">Show Schedule</a>
+                <a class="btn btn-default" href="#/iftaFiling" data-id="proPaneBtn"
+                   ng-click='idPass($event)'>Show Schedule</a>
             </td>
+
+            <!--
+        <div>
+            <button data-id='102' ng-click='idPass($event)'>Delete</button>
+        </div>-->
         </tr>
         <tr class="footColor">
             <td align="right"><label class="lable-default">Schedule Totals</label>0</td>
