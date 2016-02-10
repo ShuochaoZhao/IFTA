@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" >
+<head>
+    <meta charset="UTF-8">
+    <title>IFTA Selection</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <style>
+        .myPanel {
+            position: absolute;
+            left: 15%;
+            top: 20%;
+
+
+            background-color: #f5f5f5;
+            border: 1px solid #e3e3e3;
+            width:1200px;
+            min-height:300px;
+        }
+
+        .control-label {
+            text-align: left !important;
+        }
+
+
+        .headColor {
+            background-color: #E8E8E8;
+        }
+
+        .headerStyle {
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid #e3e3e3;
+        }
+    </style>
+
+    <script>
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('myCtrl', function($scope) {
+            $scope.myDatas = [];
+
+            $scope.raNumbers = [
+                'RA-1', 'RA-2', 'RA-3', 'RA-4'
+            ]
+
+            $scope.addContacts = [
+                'C-1', 'C-2', 'C-3', 'C-4'
+            ]
+
+
+            $scope.addData = function(){
+                $scope.myDatas.push({
+                    requestor: $scope.requestor,
+                    requestorId: $scope.requestorId,
+                    raNumber: $scope.raNumber,
+                    theropArea: $scope.theropArea,
+                    addContact: $scope.addContact
+                });
+            };
+
+            $scope.deleteData = function(index){
+                $scope.myDatas.splice(index, 1);
+            };
+        });
+
+    </script>
+</head>
+<body ng-controller="myCtrl">
+<div class="myPanel" style="padding:30px 10px">
+    <div class="col-sm-4">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-sm-4">Requestor:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" maxlength="8"  ng-model="requestor">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4">Requestor ID:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="control-label form-control" maxlength="8"  ng-model="requestorId">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4">RA Number:</label>
+                <div class="col-sm-6">
+                    <select class="form-control" ng-init="raNumbers[0]"
+                            ng-model="raNumber" ng-options="raNumber for raNumber in raNumbers">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4">Therop Area:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" maxlength="8"  ng-model="theropArea">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4">Add Contact:</label>
+                <div class="col-sm-6">
+                    <select class="form-control iftaSelect" ng-init="addContacts[0]"
+                            ng-model="addContact" ng-options="addContact for addContact in addContacts">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-11">
+                <button style="float:left" ng-click="addData()">Add</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-8">
+        <table border="1" width="100%">
+            <tr class="headColor">
+                <th align="center" class="headerStyle">
+                    Requestor
+                </th>
+                <th align="center" class="headerStyle">
+                    Requestor ID
+                </th>
+                <th align="center" class="headerStyle">
+                    RA Number
+                </th>
+                <th align="center" class="headerStyle">
+                    Therop. Area
+                </th>
+                <th align="center" class="headerStyle">
+                    Add Contacts
+                </th>
+                <th align="center" class="headerStyle">
+                    Action
+                </th>
+            </tr>
+            <tr ng-repeat="myData in myDatas">
+                <td align="center">
+                    {{myData.requestor}}
+                </td>
+                <td align="center">
+                    {{myData.requestorId}}
+                </td>
+                <td align="center">
+                    {{myData.raNumber}}
+                </td>
+                <td align="center">
+                    {{myData.theropArea}}
+                </td>
+                <td align="center">
+                    {{myData.addContact}}
+                </td>
+                <td align="center">
+                    <a ng-click="deleteData($index)">Delete</a>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+
+
+</body>
+</html>
